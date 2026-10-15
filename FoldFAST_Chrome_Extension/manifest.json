@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Fold FAST v6.0 - Universal Download & Media Manager",
+  "version": "6.0.0",
+  "description": "Intercepts all file downloads in Chrome and provides a 1-icon video/audio downloader for YouTube, Facebook, TikTok & any site.",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "downloads",
+    "contextMenus",
+    "storage",
+    "activeTab",
+    "tabs",
+    "scripting",
+    "webRequest",
+    "notifications"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:16888/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Fold FAST",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icon48.png",
+        "icon128.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}

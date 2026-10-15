@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fold FAST</title>
+  <style>
+    :root {
+      --bg: #141416;
+      --card: #242429;
+      --text: #ffffff;
+      --muted: #a1a1aa;
+      --border: rgba(255,255,255,0.09);
+      --hover: #2f2f37;
+    }
+    body.light {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: rgba(15,23,42,0.12);
+      --hover: #e2e8f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      width: 215px;
+      margin: 0;
+      padding: 10px;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .brand img { width: 19px; height: 19px; }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff385c;
+    }
+    .dot.on { background: #38e54d; box-shadow: 0 0 6px #38e54d; }
+
+    .list-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 8px;
+      max-height: 185px;
+      overflow-y: auto;
+    }
+    .opt-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 8px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .opt-row:hover { background: var(--hover); }
+    .opt-tag {
+      font-size: 9.5px;
+      padding: 1px 6px;
+      border-radius: 99px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(90deg, #ff385c, #ff4d42);
+    }
+    .opt-tag.aud {
+      background: linear-gradient(90deg, #b4ff39, #38e54d);
+      color: #0b1207;
+    }
+
+    .icon-bar {
+      display: flex;
+      gap: 5px;
+    }
+    .bar-item {
+      flex: 1;
+      height: 30px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 11.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .bar-item:hover { background: var(--hover); }
+    .bar-item.active { border-color: #38e54d; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="brand">
+      <img src="icon48.png" alt="Fold FAST" />
+      <span>Fold FAST</span>
+    </div>
+    <div id="statusDot" class="dot" title="FoldFAST.exe"></div>
+  </div>
+
+  <div class="list-card" id="instantList">
+    <div class="opt-row" data-val="video|mp4|1080"><span>🎬 MP4</span><span class="opt-tag">1080p</span></div>
+    <div class="opt-row" data-val="video|mp4|720"><span>🎬 MP4</span><span class="opt-tag">720p</span></div>
+    <div class="opt-row" data-val="video|mp4|480"><span>🎬 MP4</span><span class="opt-tag">480p</span></div>
+    <div class="opt-row" data-val="video|mp4|360"><span>🎬 MP4</span><span class="opt-tag">360p</span></div>
+    <div class="opt-row" data-val="video|mkv|best"><span>🎬 MKV</span><span class="opt-tag">Auto</span></div>
+    <div class="opt-row" data-val="audio|mp3|320k"><span>🎵 MP3</span><span class="opt-tag aud">320k</span></div>
+    <div class="opt-row" data-val="audio|mp3|128k"><span>🎵 MP3</span><span class="opt-tag aud">128k</span></div>
+    <div class="opt-row" data-val="audio|m4a|320k"><span>🎵 M4A</span><span class="opt-tag aud">Audio</span></div>
+    <div class="opt-row" data-val="audio|wav|best"><span>🎵 WAV</span><span class="opt-tag aud">Audio</span></div>
+  </div>
+
+  <div class="icon-bar">
+    <button id="btnLang" class="bar-item" title="Idioma / Language">ES</button>
+    <button id="btnTheme" class="bar-item" title="Tema / Theme">🌙</button>
+    <button id="btnFolder" class="bar-item" title="Carpeta / Folder">📂</button>
+    <button id="btnToggleAuto" class="bar-item active" title="Auto-Captura / Auto-Capture">⚡</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
